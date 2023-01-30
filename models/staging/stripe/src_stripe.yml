@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: stripe
+    description: 'Includes data about the payment for each order.'
+    database: neven_raw
+    schema: stripe
+    tables:
+      - name: payment
+        loaded_at_field: _batched_at
+        freshness:
+          warn_after: {count: 180, period: day}
+          error_after: {count: 365, period: day}
